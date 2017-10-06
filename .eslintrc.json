@@ -1,0 +1,31 @@
+{
+  "env": {
+    "jest": true,
+    "browser": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:flowtype/recommended"
+  ],
+  "plugins": [
+    "flowtype",
+    "compat"
+  ],
+  "settings": {
+    "polyfills": ["fetch"]
+  },
+  "rules": {
+    "semi": [2, "never"],
+    "no-unexpected-multiline": 2,
+    "compat/compat": 0, // should be 2
+    "jsx-a11y/href-no-hash": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "warn",
+      {
+        "aspects": [
+          "invalidHref"
+        ]
+      }
+    ]
+  }
+}
