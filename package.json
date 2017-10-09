@@ -19,14 +19,18 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "bootstrap": "4.0.0-beta",
     "compression": "^1.7.1",
     "express": "^4.16.1",
     "immutable": "4.0.0-rc.2",
     "isomorphic-fetch": "^2.2.1",
+    "jquery": "^3.2.1",
+    "popper.js": "^1.12.5",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-helmet": "^5.2.0",
     "react-hot-loader": "^3.0.0-beta.7",
+    "react-jss": "^7.2.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
@@ -34,7 +38,8 @@
     "redux-actions": "^2.2.1",
     "redux-thunk": "^2.2.0",
     "socket.io": "^2.0.3",
-    "socket.io-client": "^2.0.3"
+    "socket.io-client": "^2.0.3",
+    "tether": "^1.4.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

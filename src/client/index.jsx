@@ -3,6 +3,7 @@
 import 'babel-polyfill'
 
 import Immutable from 'immutable'
+import $ from 'jquery'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
@@ -10,12 +11,17 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import Tether from 'tether'
 
-import setUpSocket from './socket'
 import App from '../shared/app'
+import { APP_CONTAINER_SELECTOR, JSS_SSR_SELECTOR } from '../shared/config'
 import helloReducer from '../shared/reducer/hello'
-import { APP_CONTAINER_SELECTOR } from '../shared/config'
 import { isProd } from '../shared/util'
+import setUpSocket from './socket'
+
+window.jQuery = $
+window.Tether = Tether
+require('bootstrap')
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = (isProd ? null : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
@@ -38,7 +44,7 @@ const wrapApp = (AppComponent, reduxStore) =>
     </BrowserRouter>
   </Provider>)
 
-ReactDOM.render(wrapApp(App, store), rootEl)
+ReactDOM.hydrate(wrapApp(App, store), rootEl)
 
 if (module.hot) {
   // flow-disable-next-line
@@ -48,5 +54,9 @@ if (module.hot) {
     ReactDOM.render(wrapApp(NextApp, store), rootEl)
   })
 }
+
+const jssServerSide = document.querySelector(JSS_SSR_SELECTOR)
+// flow-disable-next-line
+jssServerSide.parentNode.removeChild(jssServerSide)
 
 setUpSocket(store)
