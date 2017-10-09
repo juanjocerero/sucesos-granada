@@ -16,8 +16,8 @@ import { isProd } from './../shared/util'
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = (isProd ? null : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 
-// eslint-disable-next-line max-len
-const store = createStore(combineReducers({ hello: helloReducer }), composeEnhancers(applyMiddleware(thunkMiddleware)))
+const store = createStore(combineReducers({ hello: helloReducer }),
+  composeEnhancers(applyMiddleware(thunkMiddleware)))
 
 const rootEl = document.querySelector(APP_CONTAINER_SELECTOR)
 
