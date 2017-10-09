@@ -2,6 +2,7 @@
 
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
+import Helmet from 'react-helmet'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router'
 
@@ -12,18 +13,22 @@ import { isProd } from './../shared/util'
 
 const renderApp = (location: string, plainPartialState: ?Object, routerContext: ?Object = {}) => {
   const store = initStore(plainPartialState)
+
+  // Helmet.rewind() must ALWAYS come after ReactDOMServer.renderToString()
   const appHtml = ReactDOMServer.renderToString(
     <Provider store={store}>
       <StaticRouter location={location} context={routerContext}>
         <App />
       </StaticRouter>
     </Provider>)
+  const head = Helmet.rewind()
 
   return (
     `<!doctype html>
     <html>
       <head>
-        <title>FIX ME</title>
+        ${head.title}
+        ${head.meta}
         <link rel="stylesheet" href="${STATIC_PATH}/css/style.css">
       </head>
       <body>
