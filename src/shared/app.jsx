@@ -21,7 +21,11 @@ import {
 const App = () =>
   (<div style={{ paddingTop: 54 }}>
     <Helmet titleTemplate={`%s | ${APP_NAME}`} defaultTitle={APP_NAME} />
-    <h1>{APP_NAME}</h1>
+    <div className="row">
+      <div className="col-md-12 text-center">
+        <h1>{APP_NAME}</h1>
+      </div>
+    </div>
     <Nav />
     <Switch>
       <Route exact path={HOME_PAGE_ROUTE} render={() => <HomePage />} />

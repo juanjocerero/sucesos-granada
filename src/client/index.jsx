@@ -44,6 +44,7 @@ const wrapApp = (AppComponent, reduxStore) =>
     </BrowserRouter>
   </Provider>)
 
+// flow-disable-next-line
 ReactDOM.hydrate(wrapApp(App, store), rootEl)
 
 if (module.hot) {
